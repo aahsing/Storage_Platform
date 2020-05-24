@@ -31,10 +31,14 @@ ALLOWED_HOSTS = [ '192.168.190.146' ]
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
-    'filer',
     'mptt',
+    'grappelli',
+    'filebrowser',
+    'rest_framework',
     'easy_thumbnails',
+    'filesystems.apps.FilesystemsConfig',
+    'nfsshare.apps.NfsshareConfig',
+    'smbshare.apps.SmbshareConfig',
     'storagemgmt.apps.StoragemgmtConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -126,4 +130,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/test/media'
+MEDIA_URL = '/media/'
+
+FILEBROWSER_DIRECTORY = 'file_upload/'
+
+
+####test REST framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
